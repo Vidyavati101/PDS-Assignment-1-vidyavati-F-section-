@@ -1,0 +1,15 @@
+"""create a python program that asks user how far they
+travel.If they want to travel less than three miles
+tell them to ride bicycle.if they want to travel more
+ than three miles,but less than three hundred miles
+tell them to ride motor bike.if they want to travel
+more than three hundred miles tell them to ride
+ supercar"""
+
+miles=float(input("Enter the miles:"))
+if miles<3:
+    print("ride bicycle")
+elif miles>3 and miles<300:
+    print("ride motor bike")
+else:
+    print("ride supercar")

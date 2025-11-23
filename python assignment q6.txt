@@ -1,0 +1,30 @@
+"""Design a module math_utils.py with functions:factoriak(n)is_prime(n)gcd(a,b)include exception handling for invalid or negative inputs.import and test these functions from another script"""
+
+def factorial(n):
+    if n < 0:
+        return "Invalid"
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+# Test from another script (example below)
+if __name__ == "__main__":
+    print("Factorial:", factorial(5))
+    print("Is Prime:", is_prime(17))
+    print("GCD:", gcd(20, 8))
+
+
+

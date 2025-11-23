@@ -1,0 +1,29 @@
+"""you are building a small program for a school.The user must enter student's name and marks in three subjects.the program should calculate total,average,and display grade.I f marks are not between 0 to 100 show an error message"""
+name = input("Enter student name: ")
+
+# Read marks
+marks = []
+for i in range(1, 4):
+    m = float(input(f"Enter marks for subject {i}: "))
+    if m < 0 or m > 100:
+        print("Error: Marks must be between 0 and 100.")
+        exit()
+    marks.append(m)
+
+total = sum(marks)
+average = total / 3
+
+if average >= 90:
+    grade = 'A'
+elif average >= 75:
+    grade = 'B'
+elif average >= 60:
+    grade = 'C'
+else:
+    grade = 'D'
+
+print("\n=== Student Report ===")
+print("Name:", name)
+print("Total:", total)
+print("Average:", average)
+print("Grade:", grade)

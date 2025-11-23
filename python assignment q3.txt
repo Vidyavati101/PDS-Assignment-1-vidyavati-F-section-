@@ -1,0 +1,18 @@
+"""A company needs a program that reads employees name and their basic salary.The program that should calculate total salary including hra(20%) and da(10%)stop taking input when user types stop.Display each employees total salary at end"""
+
+n = int(input("Enter number of employees: "))
+
+for i in range(n):
+    print("\nEmployee", i+1)
+    name = input("Enter name: ")
+    basic = float(input("Enter basic salary: "))
+    
+    da = 0.20 * basic
+    hra = 0.10 * basic
+    total = basic + da + hra
+    
+    print(f"Name: {name}")
+    print(f"Basic Salary: {basic}")
+    print(f"DA (20%): {da}")
+    print(f"HRA (10%): {hra}")
+    print(f"Total Salary: {total}")

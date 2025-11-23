@@ -1,0 +1,17 @@
+""" traffic system records the average speed of vehicles every hour for 12 hours.write a program that reads12 speed values(float).calculate the average speed.Displays whether traffic flow was slow(avg<40),normal(40-80,or fast(avg.80)"""
+speeds = []
+
+print("Enter 12 speed values (float numbers):")
+for i in range(12):
+    s = float(input(f"Speed {i+1}: "))
+    speeds.append(s)
+
+avg = sum(speeds) / 12
+print("Average Speed\n =", avg)
+
+if avg <= 20:
+    print("Category: Slow")
+elif avg <= 40:
+    print("Category: Normal")
+else:
+    print("Category: Fast")

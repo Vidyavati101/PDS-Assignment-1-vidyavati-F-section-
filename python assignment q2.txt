@@ -1,0 +1,16 @@
+"""An app for mobile hosting provider charges $0.50 per hour how much does it cost to operator per day,per
+ hour how much does it cost to operator per day,per week,per month?how many days can i operate one
+ server with $918"""
+
+rate_per_hour = 0.50
+cost_per_day = rate_per_hour * 24
+cost_per_week = cost_per_day * 7
+cost_per_month = cost_per_day * 30
+
+budget = 918
+days_possible = budget / cost_per_day
+
+print("Cost per day: $", cost_per_day)
+print("Cost per week: $", cost_per_week)
+print("Cost per month: $", cost_per_month)
+print("Days you can operate with $918:", days_possible)
