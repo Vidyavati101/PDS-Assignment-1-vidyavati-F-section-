@@ -16,9 +16,14 @@ basic Python programming concepts through simple problem statements.
 
 ## Files Included
 - python assignment q1.py
+- python assignment q2.py
+- python assignment q3.py
+- python assignment q4.py
+- python assignment q5.py
 - python assignment q6.py
 - python assignment q7.py
-- python  assignment q8.py
+- python assignment q8.py
+
 
 ## How to Use
 Open the files to view the Python solutions for each question.
