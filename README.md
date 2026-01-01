@@ -15,9 +15,10 @@ basic Python programming concepts through simple problem statements.
 - Basic Logic Building
 
 ## Files Included
-- python assignment q1.txt
-- python assignment q6.txt
-- python assignment q7.txt
+- python assignment q1.py
+- python assignment q6.py
+- python assignment q7.py
+- python  assignment q8.py
 
 ## How to Use
 Open the files to view the Python solutions for each question.
