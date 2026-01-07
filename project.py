@@ -232,7 +232,7 @@ lin_reg = LinearRegression()
 lin_reg.fit(X_train, y_train)
 # Predictions
 y_pred = lin_reg.predict(X_test)
-#step6: Evaluation
+#step6: Evaluation 
 print("Linear Regression Results")
 print("Intercept:", lin_reg.intercept_)
 print("Coefficient:", lin_reg.coef_)
