@@ -1,185 +1,242 @@
-"Perform end-to-end analysis on a real-world dataset using Python (Pandas, NumPy, Matplotlib, Seaborn, scikit-learn). The tasks include"
-
-#1.use Classification Model Example:iris dataset
-#step1.Data loading and inspection
-import seaborn as sns
-df=sns.load_dataset("iris")
-print(df)
-# First 5 row
-print(df.head())
-# Dataset info
-print(df.info())
-# Shape
-print(df.shape)
-
-#step2.Data cleaning and preprocessing
-# Check missing values
-print(df.isnull().sum())
-# Check missing values
-print(df.isnull().sum())
-
-# Remove duplicates
-df = df.drop_duplicates()
-
-# After cleaning
-print(df.shape)
+#Perform end-to-end analysis on a real-world dataset using Python (Pandas, NumPy,
+Matplotlib, Seaborn, scikit-learn).
+#1.Use Classification Model Example : iris dataset
+#step 1 - 1: Data loading and inspection
 import pandas as pd
 import numpy as np
-
-data = {
-    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Heidi'],
-   'Age': [24, 30, np.nan, 28, 22, 35, 29, 40],
-    'City': ['New York', 'Los Angeles', 'Chicago', 'New                                 York',  'Boston', 'Los Angeles',  'Chicago', ''],
-    'Salary': [50000, 60000, 55000, 62000, np.nan, 70000, 58000, 75000],
-    'Department': ['IT', 'HR', 'IT', 'Sales', 'HR', 'IT', 'Sales', 'IT']
-}
-df=pd.DataFrame(data)
-# Check missing values
-print(df.isnull().sum())
-#Handling the missing values
-# Fill missing Age with mean
-df['Age'].fillna(df['Age'].mean(), inplace=True)
-
-# Fill missing Salary with 0
-df['Salary'].fillna(0, inplace=True)
-df = df[df['City'] != ""]
-print("\nDataFrame after handling missing values:")
-print(df)
-#Handle Duplicates
-df_dup=pd.DataFrame({'A':[1,2,2,3],'B':['x','y','y','z']})
-print (df_dup)
-#Remove the duplicates
-df_dup.drop_duplicates(inplace=True)
-print(df_dup)
-df['Age']=df['Age'].astype(int)
-print(df.dtypes)
-#Data Type conversion
-df['Age']=df['Age'].astype(int)
-print (df.dtypes)
-
-#step3.Exploratory Data Analysis(EDA)
-df=sns.load_dataset("iris")
-print ("\nSummary Statistics:")
-print (df.describe())
-#Check the distribution using Histogram
-import pandas as pd
-import seaborn as sns
-import numpy as np
-import matplotlib .pyplot as plt
-data=np.random.randn(1000)
-plt.hist(data, bins= 30,color="green",edgecolor="black")
-plt.title("Histogram example")
-plt.xlabel("values")
-plt.ylabel("frequency")
-plt.show()
-
-import seaborn as sns
 import matplotlib.pyplot as plt
-numeric_df = df.select_dtypes(include='number')
-
-# correlation calculate
-corr = numeric_df.corr()
-sns.heatmap(corr, annot=True,     cmap="coolwarm")
+import seaborn as sns
+from sklearn.datasets import load_iris
+# Load the dataset
+df = sns.load_dataset("iris")
+print(df)
+# Inspection
+print("First 5 rows of dataset:\n",df.head())
+print("\nDataset Info:")
+print(df.info())
+#Step-2-Data Cleaning and Preprocessing
+# Check for missing values
+print("\nMissing values in dataset:")
+print(df.isnull().sum())
+# Handle Duplicates (if any)
+print("DataFrame with duplicates:")
+print(df)
+df.drop_duplicates(inplace=True)
+print("\nDataFrame after dropping duplicates:")
+print(df)
+#Converting datatypes using astype function
+df['species'] = df['species'].astype(str)
+print(df)
+#Step-3 - EDA
+#Use describe() to get statistical summary
+print("\nSummary Statistics:")
+print(df.describe())
+#Check distributions using histograms or boxplots
+sns.boxplot(x="species", y="petal_length",data=df, palette="Set2")
+plt.title("Box Plot - Petal Length bySpecies")
+plt.show()
+numeric_df=df.select_dtypes(include='number')
+corr=numeric_df.corr()
+sns.heatmap(corr, annot=True, cmap="coolwarm")
 plt.title("Correlation Heatmap")
 plt.show()
-
-#Step4.Data Visualization
-import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
-import pandas as pd
-df = pd.DataFrame({
-    'Age': [18, 19, 20, 21, 22],
-    'Marks': [65, 70, 75, 80, 85]
-})
-
-# Line plot (Matplotlib)
-plt.plot(df['Age'], df['Marks'])
-plt.xlabel("Age")
-plt.ylabel("Marks")
-plt.title("Line Plot")
-plt.show()
-
-# bar plot
-categories = ['A', 'B', 'C', 'D']
-values = [10, 24, 36, 18]
-plt.bar(categories, values, color="Pink")
-plt.title("Bar Chart Example")
-plt.xlabel("Categories")
-plt.ylabel("Values")
+# 1. Identify Numerical Variables
+# These are usually 'float64' or 'int64'
+numerical_cols = df.select_dtypes(include=['number']).columns.tolist()
+# 2. Identify Categorical Variables
+# These are usually 'object'
+,
+'category'
+, or 'bool'
+categorical_cols
+df.select_dtypes(include=['object''category']).columns.tolist()
+print(f"Numerical Variables:{numerical_cols}")
+print(f"Categorical Variables: {categorical_cols}")
+# Quick check of data types
+print("\nColumn Data Types:")
+print(df.dtypes)
+#Step-4 - Data Visualization
+#Line plot
+iris = load_iris()
+x = range(len(iris.data))
+sepal_length = iris.data[:, 0]
+sepal_width = iris.data[:, 1]
+petal_length = iris.data[:, 2]
+plt.figure()
+plt.plot(x, sepal_length, label='Sepal Length')
+plt.plot(x, sepal_width, label='Sepal Width')
+plt.plot(x, petal_length, label='PetaLength')
+plt.xlabel('Samples')
+plt.ylabel('Length (cm)')
+plt.title('Line Plot of Iris Features')
 plt.legend()
 plt.show()
+#Scatter chart
+plt.figure()
+plt.scatter(sepal_length, sepal_width)
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.title('Scatter Plot: Sepal Length vs Sepal Width')
+plt.show()
+#Bar Chart
+avg_sepal_length = sepal_length.mean()
+avg_sepal_width = sepal_width.mean()
+avg_petal_length = petal_length.mean()
+features = ['Sepal Length'
+,
+'Sepal Width'
+,
+'Petal Length']
+values = [avg_sepal_length, avg_sepal_width, avg_petal_length]
+plt.figure()
+plt.bar(features, values)
+plt.ylabel('Average Length (cm)')
+plt.title('Bar Chart of Iris Features')
+plt.show()
+#Box plot
+# Create a box plot for Petal Length across species
+plt.figure(figsize=(10, 6))
+sns.boxplot(x=
+'species'
+, y=
+'petal_length'
+, data=df, palette=
+'Set2')
+# Adding titles and labels
+plt.title('Distribution of Petal Length by Species', fontsize=15)
+plt.xlabel('Species', fontsize=12)
+plt.ylabel('Petal Length (cm)', fontsize=12)
+plt.show()
+# 6. Pair Plot (Seaborn)
+sns.pairplot(df, hue=
+"species")
+plt.suptitle("Pair Plot - Iris Dataset", y=1.02)
+plt.show()
+#7.Violin plot
+# 1. Load the dataset
+iris = load_iris()
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+df['species'] = [iris.target_names[i] for i in iris.target]
+# 2. Set the visual style
+sns.set_theme(style="whitegrid")
+# 3. Create the Violin Plot
+plt.figure(figsize=(10, 6))
+sns.violinplot(x=
+'species'
+, y=
+'petal length (cm)'
+, data=df, inner=
+'quartile'
+,
+palette=
+'muted')
+# 4. Adding titles and labels
+plt.title('Distribution of Petal Length by Species (Violin Plot)'
+, fontsize=15)
+plt.xlabel('Species'
+, fontsize=12)
+plt.ylabel('Petal Length (cm)'
+, fontsize=12)
+plt.savefig('iris_violin_plot.png')
+#Step-5 - Predictive modelling
+# Import libraries
 import seaborn as sns
-import matplotlib.pyplot as plt
-
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 # Load dataset
-df = sns.load_dataset("iris")
-# .Scatter Plot (Seaborn)
-sns.scatterplot(
-    x="sepal_length",
-    y="sepal_width",
-    hue="species",
-    data=df
-)
-plt.title("Scatter Plot - Iris Dataset")
-plt.show()
-# Box Plot (Seaborn)
-sns.boxplot(
-    x="species",
-    y="petal_length",
-    data=df,
-    palette="Set2"
-)
-plt.title("Box Plot - Petal Length by Species")
-plt.show()
-
-#  Pair Plot (Seaborn)
-sns.pairplot(df, hue="species")
-plt.suptitle("Pair Plot - Iris Dataset", y=1.02)
-plt.show()
-
-import seaborn as sns
-import matplotlib.pyplot as plt
-df = sns.load_dataset("iris")
-
-# Violin Plot
-sns.violinplot(
-    x="species",
-    y="petal_length",
-    data=df,
-    palette="Set2")
-plt.title("Violin Plot - Petal Length by Species")
-plt.xlabel("Species")
-plt.ylabel("Petal Length")
-plt.show()
-
-#step5: Building a predictive Model 
-import seaborn as sns
-from sklearn.linear_model
- import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report
-from sklearn.model_selection
- import train_test_split
-
-# Load dataset
-df = sns.load_dataset("iris")
-
+iris = sns.load_dataset("iris")
 # Features and target
-X = df.drop("species", axis=1)
-y = df["species"]
-
-# Train-test split
+X = iris[['sepal_length'
+,
+'sepal_width'
+,
+'petal_length']]
+y = iris['species']
+# Split data into training and testing
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+X, y, test_size=0.2, random_state=42
 )
+# Choose Logistic Regression model
+model = LogisticRegression(max_iter=200)
+# Train the model
+model.fit(X_train, y_train)
+# Make predictions
+y_pred = model.predict(X_test)
+# Check accuracy
+print("Accuracy:"
+, accuracy_score(y_test, y_pred))
+#Step-6 - Model Evaluation
+print("Accuracy Score:")
+print(accuracy_score(y_test, y_pred))
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
 
+
+#1.Use Regression Model Example : salary dataset
+
+# DATA LOADING
+#Load dataset using pandas and seaborn
+import pandas as pd
+import seaborn as sns
+df=pd.read_csv("Salary_Data.csv")
+#Inspect the first few rows with df.head()
+print("First 5 rows of dataset:\n",df.head())
+#Check shape and column types with df.info()
+print("\nDataset Info:")
+print(df.info())
+# step1:DATA CLEANING
+#Checking missing values
+print("\nMissing values in dataset:")
+print(df.isnull().sum())
+df=df.dropna()
+print(df.isnull().sum())
+#EXPLORATORY DATA ANALYSIS (EDA)
+print("\nSummary Statistics:")
+print(df.describe())
+# step2:DATA VISUALIZATION
+# importing matplot library for graphs
+import matplotlib.pyplot as plt
+#Univariate Analysis
+df.hist(figsize=(6,4))
+plt.title("Histogram on salary dataset")
+plt.show()
+# step3:Bivariate Analysis
+plt.scatter(df['Years of Experience'], df['Salary'])
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
+plt.title("Salary vs Years of Experience")
+plt.show()
+#Correlation Heatmap
+numeric_df=df.select_dtypes(include='number')
+corr=numeric_df.corr()
+sns.heatmap(corr,annot=True,cmap="coolwarm")
+plt.title("Correlation Heatmap")
+plt.show()
+# step4:PREDICTIVE MODELING
+#LINEAR REGRESSION
+#Regression Model
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error,r2_score
+# Features and target
+X = df[['Years of Experience']]   # Independent variable
+y = df['Salary']              # Dependent variable
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 # Build model
-log_reg = LogisticRegression(max_iter=200)
-log_reg.fit(X_train, y_train)
-
+lin_reg = LinearRegression()
+lin_reg.fit(X_train, y_train)
 # Predictions
-y_pred = log_reg.predict(X_test)
-
-#step6.Evaluation
-print("\nClassification Results")
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("\nClassification Report:\n",      classification_report(y_test, y_pred))
+y_pred = lin_reg.predict(X_test)
+#step6: Evaluation
+print("Linear Regression Results")
+print("Intercept:", lin_reg.intercept_)
+print("Coefficient:", lin_reg.coef_)
+print("Mean Squared Error:",mean_squared_error(y_test, y_pred))
+mse = mean_squared_error(y_test, y_pred)
+print("Root Mean Squared Error:",np.sqrt(mse) )
+print("R² Score:",r2_score(y_test, y_pred))
