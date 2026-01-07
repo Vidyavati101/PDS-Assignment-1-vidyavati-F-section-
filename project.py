@@ -44,11 +44,8 @@ plt.show()
 # These are usually 'float64' or 'int64'
 numerical_cols = df.select_dtypes(include=['number']).columns.tolist()
 # 2. Identify Categorical Variables
-# These are usually 'object'
-,
-'category'
-, or 'bool'
-categorical_cols
+# These are usually 'object','category', or'bool'
+#categorical_cols
 df.select_dtypes(include=['object''category']).columns.tolist()
 print(f"Numerical Variables:{numerical_cols}")
 print(f"Categorical Variables: {categorical_cols}")
